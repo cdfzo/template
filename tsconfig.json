@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "types": ["bun-types"],
+    "lib": ["ESNext"],
+    "module": "esnext",
+    "target": "esnext",
+    "strict": true
+  }
+}
