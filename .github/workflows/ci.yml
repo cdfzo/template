@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+    branches:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('bun.lockb') }}
+          restore-keys: ${{ runner.os }}-node
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun i
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Test
+        run: bun run test

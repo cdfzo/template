@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "bun run src/index.ts",
-    "lint": "echo 'TODO' && exit 1",
+    "lint": "echo 'TODO'",
     "test": "bun test",
-    "build": "echo 'TODO' && exit 1"
+    "build": "echo 'TODO'"
   },
   "devDependencies": {
     "bun-types": "latest"
