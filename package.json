@@ -1,16 +1,38 @@
 {
   "name": "@cdfzo/template",
   "version": "0.1.0",
+  "description": "TODO",
+  "author": "cdfzo",
+  "license": "MIT",
+  "homepage": "https://github.com/cdfzo/template#readme",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "cdfzo"
+  ],
   "scripts": {
-    "dev": "bun run src/index.ts",
+    "dev": "bun run src/index.ts --watch",
     "lint": "echo 'TODO'",
     "test": "bun test",
-    "build": "echo 'TODO'"
+    "build": "bun build src/index.ts --outdir dist --minify",
+    "build:bin": "bun build src/index.ts --outfile dist/template --compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdfzo/template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cdfzo/template/issues"
   },
   "devDependencies": {
     "bun-types": "latest"
   },
   "peerDependencies": {
     "typescript": "latest"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
   }
 }
