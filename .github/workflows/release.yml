@@ -1,9 +1,13 @@
-name: ci
+name: release
 
-on: push
+permissions: write-all
+
+on:
+  push:
+    paths: package.json
 
 jobs:
-  lint-and-test:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,3 +33,10 @@ jobs:
 
       - name: Run tests
         run: bun run test
+
+      - name: Release
+        run: ./.github/release.sh
+        env:
+          ASSET_NAME: TODO
+          GH_TOKEN: ${{ github.token }}
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
