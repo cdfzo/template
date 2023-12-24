@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "dev": "bun run src/index.ts --watch",
-    "lint": "echo 'TODO'",
+    "lint": "bunx --bun eslint .",
     "test": "bun test",
     "build": "bun build src/index.ts --outdir dist --minify",
     "build:bin": "bun build src/index.ts --outfile dist/template --compile"
@@ -25,7 +25,10 @@
     "url": "https://github.com/cdfzo/template/issues"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "bun-types": "latest",
+    "eslint": "latest"
   },
   "peerDependencies": {
     "typescript": "latest"
