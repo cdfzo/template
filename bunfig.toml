@@ -1,0 +1,6 @@
+telemetry = false
+
+[test]
+root = 'tests'
+coverage = true
+coverageThreshold = { line = 1, function = 1, statement = 1 }
