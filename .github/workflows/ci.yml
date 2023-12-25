@@ -3,8 +3,9 @@ name: ci
 on: push
 
 jobs:
-  lint-and-test:
+  check:
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
       - name: Checkout
@@ -21,11 +22,48 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Install dependencies
-        run: bun i
+      - name: Set up project
+        run: bun run setup
 
       - name: Run linters
         run: bun run lint
 
       - name: Run tests
         run: bun run test
+
+      - name: Set env variables
+        run: |
+          commitMsg=$(git log -n 1 --format=%B)
+          [[ $commitMsg =~ ^v[0-9] ]] || exit 0
+          version=$(jq -r '.version' package.json)
+          [[ $commitMsg == v$version ]] || exit 0
+          echo "beta=$([[ $version =~ -|^0 ]] && echo '-p')" >> $GITHUB_ENV
+          echo "version=$version" >> $GITHUB_ENV
+
+      - name: Build dist
+        run: bun run build && bun run build:bin
+        if: ${{ env.version }}
+
+      - name: Release on GitHub
+        run: |
+          zip -r template-$version.zip bin/*
+          gh release create v$version -t v$version $beta \
+            -n 'See [CHANGELOG.md](/CHANGELOG.md) for details' \
+            template-$version.zip
+        if: ${{ env.version }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Publish to npm
+        run: |
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          npm publish
+        if: ${{ env.version }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to VS Marketplace
+        run: vsce publish
+        if: ${{ env.version }}
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}

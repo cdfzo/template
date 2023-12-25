@@ -11,11 +11,12 @@
     "cdfzo"
   ],
   "scripts": {
+    "setup": "bun i",
     "dev": "bun run src/index.ts --watch",
     "lint": "bunx --bun eslint .",
     "test": "bun test",
     "build": "bun build src/index.ts --outdir dist --minify",
-    "build:bin": "bun build src/index.ts --outfile dist/template --compile"
+    "build:bin": "bun build src/index.ts --outfile bin/template --compile"
   },
   "repository": {
     "type": "git",
