@@ -37,16 +37,16 @@ jobs:
           [[ $commitMsg =~ ^v[0-9] ]] || exit 0
           version=$(jq -r '.version' package.json)
           [[ $commitMsg == v$version ]] || exit 0
-          echo "beta=$([[ $version =~ -|^0 ]] && echo '-p')" >> $GITHUB_ENV
+          echo "beta=$([[ $version =~ - ]] && echo '-p')" >> $GITHUB_ENV
           echo "version=$version" >> $GITHUB_ENV
 
       - name: Build dist
-        run: bun run build && bun run build:bin
+        run: bun run build
         if: ${{ env.version }}
 
       - name: Release on GitHub
         run: |
-          zip -r template-$version.zip bin/*
+          zip -r template-$version.zip dist/*
           gh release create v$version -t v$version $beta \
             -n 'See [CHANGELOG.md](/CHANGELOG.md) for details' \
             template-$version.zip
@@ -63,7 +63,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to VS Marketplace
-        run: vsce publish
+        run: bunx --bun vsce publish
         if: ${{ env.version }}
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
