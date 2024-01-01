@@ -1,9 +1,9 @@
-# Template
+# cdfzo/template
 
-[![Build][build]](https://github.com/cdfzo/cli/actions)
-[![Coverage][coverage]](https://github.com/cdfzo/cli/tree/main/tests)
-[![Version][version]](https://github.com/cdfzo/cli/releases/latest)
-[![License][license]](https://github.com/cdfzo/cli/blob/main/LICENSE)
+[![Build][build]](https://github.com/cdfzo/template/actions)
+[![Coverage][coverage]](https://github.com/cdfzo/template/tree/main/tests)
+[![Version][version]](https://github.com/cdfzo/template/releases/latest)
+[![License][license]](https://github.com/cdfzo/template/blob/main/LICENSE)
 
 [build]: https://img.shields.io/badge/build-passing-6060ff?style=flat-square&cacheSeconds=604800
 [coverage]: https://img.shields.io/badge/coverage-100%25-6060ff?style=flat-square&cacheSeconds=604800
