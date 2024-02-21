@@ -1,15 +1,14 @@
 # Contributing Guide
 
+## Prerequisites
+
+- Bun [(latest)](https://github.com/oven-sh/bun/releases)
+- Prettier [(latest)](https://prettier.io/docs/en/editors)
+
 ## Local Setup
 
-### Prerequisites
-
-- [Bun](https://github.com/oven-sh/bun/releases) (latest)
-
-### Setup
-
 1. Clone this repo
-2. `bun run setup` to set up this project
+1. `bun run setup` to set up this project
 
 ### Run
 
@@ -22,7 +21,7 @@
 ### Test
 
 - `bun run test` to run all tests
-- `bun test tests/<file>.ts` to run a specific test
+- `bun test tests/<file>` to run a specific test
 
 ### Build
 
